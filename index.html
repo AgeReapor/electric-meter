@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Electric Consumption Calculator</title>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<div id="input-window">
+			<!-- Form element without the default redirect at submit -->
+			<form id="input-form" onsubmit="event.preventDefault()">
+				<!-- Meter ID with alphanumeric format ABCD1234 -->
+				<label for="meter-no">Meter Number</label>
+				<input
+					type="text"
+					name="meter-no"
+					id="meter-no"
+					placeholder="Enter the meter number"
+					pattern="^[A-Za-z]{4}[0-9]{4}$"
+					oninvalid="this.setCustomValidity('Enter a valid Meter Number composed of 4 letters and 4 digits (e.g. abcd1234)')"
+					oninput="this.setCustomValidity('')"
+					required
+				/>
+
+				<label for="prev-reading">Previous Reading</label>
+				<input
+					type="number"
+					name="prev-reading"
+					id="prev-reading"
+					placeholder="Enter the previous reading"
+					min="0"
+					max="99999"
+					maxlength="5"
+					oninvalid="this.setCustomValidity('Enter a valid value (max. 5 digits, non-negative)')"
+					oninput="this.setCustomValidity('')"
+					step="0.00001"
+					required
+				/>
+
+				<label for="curr-reading">Current Reading</label>
+				<input
+					type="number"
+					name="curr-reading"
+					id="curr-reading"
+					placeholder="Enter the current reading"
+					min="0"
+					max="99999"
+					maxlength="5"
+					oninvalid="this.setCustomValidity('Enter a valid value (max. 5 digits, non-negative, and  larger than the previous reading)')"
+					oninput="this.setCustomValidity('')"
+					step="0.00001"
+					required
+				/>
+
+				<label for="unit-cost">Cost</label>
+				<input
+					type="number"
+					name="unit-cost"
+					id="unit-cost"
+					placeholder="Enter the cost per kWh"
+					min="0"
+					step="0.01"
+					required
+				/>
+
+				<button id="calculate-button" type="submit">Calculate!</button>
+			</form>
+		</div>
+		<div class="loading" hidden></div>
+		<div class="output-window" hidden>
+			<form id="output-form" onsubmit="event.preventDefault()">
+				<label for="consumption"> Monthly Consumption </label>
+				<input
+					type="text"
+					name="consumption"
+					id="consumption"
+					readonly
+					value="0"
+				/>
+				<label for="monthly-cost"> Monthly Cost </label>
+				<input
+					type="text"
+					name="monthly-cost"
+					id="monthly-cost"
+					readonly
+					value="0 kWh"
+				/>
+
+				<button type="submit">SAYONARA!</button>
+			</form>
+		</div>
+		<div class="exit-msg" hidden></div>
+	</body>
+</html>
