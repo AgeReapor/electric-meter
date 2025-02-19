@@ -1,5 +1,11 @@
+// TODO: BY THE POWER OF CSS
+// TODO: summary receipt (?) maybe copy from unc portal
+// TODO: Add Peso sign in front of unit cost via ::after
+// TODO: Theme saved in storage
+
 //* VIEW *
 
+// -- DOM ELEMENTS --
 const inputForm = document.getElementById("input-form");
 const meterNo = document.getElementById("meter-no");
 const prevReading = document.getElementById("prev-reading");
@@ -12,19 +18,24 @@ const monthlyCost = document.getElementById("monthly-cost");
 const calculateButton = document.getElementById("calculate-button");
 
 //* CONTROLLER *
-const storageKey = "anything kayo na ang bahala";
 
+// -- ON PAGE LOAD --
 window.onload = function () {
-	// Load inputs on page load
-	loadInputs();
-
-	// bind event listener to both reading inputs
+	// bind comparison validation to both electric reading inputs
 	currReading.addEventListener("input", validateReading);
 	prevReading.addEventListener("input", validateReading);
 
-	// bind event listener to input submit
+	// bind output calculation to input's submit button
 	inputForm.addEventListener("submit", calculate);
+
+	// If inputs are available, load them and calculate output
+	if (loadInputs()) calculate();
 };
+
+// -- FUNCTIONS --
+
+// provided key to store inputs
+const storageKey = "anything kayo na ang bahala";
 
 // validates if current reading is greater than previous reading
 const validateReading = () => {
@@ -40,6 +51,7 @@ const validateReading = () => {
 };
 
 // input submit button calculates consumption and monthly cost
+// also saves inputs to storage
 const calculate = () => {
 	if (!validateReading()) return;
 
@@ -75,6 +87,7 @@ const saveInputs = () => {
 };
 
 // loads inputs from storage if available
+// returns true if inputs are available
 const loadInputs = () => {
 	const inputs = JSON.parse(localStorage.getItem(storageKey));
 
@@ -84,7 +97,8 @@ const loadInputs = () => {
 		currReading.value = inputs.currReading;
 		costPerUnit.value = inputs.costPerUnit;
 
-		// run calculate function
-		calculate();
+		return true;
 	}
+
+	return false;
 };
