@@ -41,8 +41,7 @@ window.onload = function () {
 	// bind exit button to exit window
 	outputForm.addEventListener("submit", gotoExitWindow);
 
-	// If inputs are available, load them and calculate output
-	// if (loadInputs()) calculate();
+	// If inputs are available, load them
 	loadInputs();
 
 	// Show the input window by default
@@ -129,14 +128,29 @@ const loadInputs = () => {
 
 // Sets all windows but the active one to hidden
 const setWindowActive = (window) => {
-	inputWindow.hidden = true;
-	loadingWindow.hidden = true;
-	outputWindow.hidden = true;
-	exitWindow.hidden = true;
+	setHidden(inputWindow);
+	setHidden(loadingWindow);
+	setHidden(outputWindow);
+	setHidden(exitWindow);
 
-	window.hidden = false;
+	removeHidden(window);
 };
 
 const gotoExitWindow = () => {
 	setWindowActive(exitWindow);
 };	
+// adds hidden class to passed element
+const setHidden = (element) => {
+	// only add hidden class if not already hidden
+	if (!element.classList.contains("hidden")) {
+		element.classList.add("hidden");
+	}
+}
+
+// removes hidden class from passed element
+const removeHidden = (element) => {
+	// only remove hidden class if already hidden
+	if (element.classList.contains("hidden")) {
+		element.classList.remove("hidden");
+	}
+}

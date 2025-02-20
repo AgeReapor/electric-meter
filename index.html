@@ -8,92 +8,109 @@
 		<script src="script.js" defer></script>
 	</head>
 	<body>
-		<div class="window" id="input-window">
-			<!-- Form element without the default redirect at submit	``` -->
-			<form id="input-form" onsubmit="event.preventDefault()">
-				<!-- Meter ID with alphanumeric format ABCD1234 -->
-				<label for="meter-no">Meter Number</label>
-				<input
-					type="text"
-					name="meter-no"
-					id="meter-no"
-					placeholder="Enter the meter number"
-					pattern="^[A-Za-z]{4}[0-9]{4}$"
-					oninvalid="this.setCustomValidity('Enter a valid Meter Number composed of 4 letters and 4 digits (e.g. abcd1234)')"
-					oninput="this.setCustomValidity('')"
-					required
-				/>
+		<div class="container">
+			<div class="window" id="input-window">
+				<div class="left">
+					<h1>LOREM IPSUM DOLOR</h1>
+					<p>
+						Nisl nisi scelerisque eu ultrices vitae auctor. Augue eget arcu
+						dictum varius duis at consectetur.
+					</p>
+				</div>
 
-				<label for="prev-reading">Previous Reading</label>
-				<input
-					type="number"
-					name="prev-reading"
-					id="prev-reading"
-					placeholder="Enter the previous reading"
-					min="0"
-					max="99999"
-					maxlength="5"
-					oninvalid="this.setCustomValidity('Enter a valid value (max. 5 digits, non-negative)')"
-					oninput="this.setCustomValidity('')"
-					step="0.00001"
-					required
-				/>
+				<div class="right">
+					<!-- Form element without the default redirect at submit -->
+					<form id="input-form" onsubmit="event.preventDefault()">
+						<!-- Meter ID with alphanumeric format ABCD1234 -->
+						<div class="label-input-pair">
+							<label for="meter-no">Meter Number</label>
+							<input
+								type="text"
+								name="meter-no"
+								id="meter-no"
+								placeholder="Enter the meter number"
+								pattern="^[A-Za-z]{4}[0-9]{4}$"
+								oninvalid="this.setCustomValidity('Enter a valid Meter Number composed of 4 letters and 4 digits (e.g. abcd1234)')"
+								oninput="this.setCustomValidity('')"
+								required
+							/>
+						</div>
+						<div class="label-input-pair">
+							<label for="prev-reading">Previous Reading</label>
+							<input
+								type="number"
+								name="prev-reading"
+								id="prev-reading"
+								placeholder="Enter the previous reading"
+								min="0"
+								max="99999"
+								maxlength="5"
+								oninvalid="this.setCustomValidity('Enter a valid value (max. 5 digits, non-negative)')"
+								oninput="this.setCustomValidity('')"
+								step="0.00001"
+								required
+							/>
+						</div>
+						<div class="label-input-pair">
+							<label for="curr-reading">Current Reading</label>
+							<input
+								type="number"
+								name="curr-reading"
+								id="curr-reading"
+								placeholder="Enter the current reading"
+								min="0"
+								max="99999"
+								maxlength="5"
+								oninvalid="this.setCustomValidity('Enter a valid value (max. 5 digits, non-negative, and  larger than the previous reading)')"
+								oninput="this.setCustomValidity('')"
+								step="0.00001"
+								required
+							/>
+						</div>
+						<div class="label-input-pair">
+							<label for="unit-cost">Cost</label>
+							<input
+								type="number"
+								name="unit-cost"
+								id="unit-cost"
+								placeholder="Enter the cost per kWh"
+								min="0"
+								step="0.01"
+								required
+							/>
+						</div>
 
-				<label for="curr-reading">Current Reading</label>
-				<input
-					type="number"
-					name="curr-reading"
-					id="curr-reading"
-					placeholder="Enter the current reading"
-					min="0"
-					max="99999"
-					maxlength="5"
-					oninvalid="this.setCustomValidity('Enter a valid value (max. 5 digits, non-negative, and  larger than the previous reading)')"
-					oninput="this.setCustomValidity('')"
-					step="0.00001"
-					required
-				/>
-
-				<label for="unit-cost">Cost</label>
-				<input
-					type="number"
-					name="unit-cost"
-					id="unit-cost"
-					placeholder="Enter the cost per kWh"
-					min="0"
-					step="0.01"
-					required
-				/>
-
-				<button id="calculate-button" type="submit">Calculate!</button>
-			</form>
-		</div>
-		<div class="window" id="loading-window" hidden>
-			<h1>CALCULATING...</h1>
-		</div>
-		<div class="window" id="output-window" hidden>
-			<form id="output-form" onsubmit="event.preventDefault()">
-				<label for="consumption"> Monthly Consumption </label>
-				<input
-					type="text"
-					name="consumption"
-					id="consumption"
-					readonly
-					value="0"
-				/>
-				<label for="monthly-cost"> Monthly Cost </label>
-				<input
-					type="text"
-					name="monthly-cost"
-					id="monthly-cost"
-					readonly
-					value="0 kWh"
-				/>
-				<button id="exit-button" type="submit">SAYONARA!</button>
-			</form>
-		</div>
-		<div class="window" id="exit-window" hidden>
-			<h1>THANK YOU FOR USING MY APP!</h1>
+						<button id="calculate-button" type="submit">Calculate!</button>
+					</form>
+				</div>
+			</div>
+			<div class="window" id="loading-window">
+				<h1>CALCULATING...</h1>
+			</div>
+			<div class="window" id="output-window">
+				<form id="output-form" onsubmit="event.preventDefault()">
+					<label for="consumption"> Monthly Consumption </label>
+					<input
+						type="text"
+						name="consumption"
+						id="consumption"
+						readonly
+						value="0"
+					/>
+					<label for="monthly-cost"> Monthly Cost </label>
+					<input
+						type="text"
+						name="monthly-cost"
+						id="monthly-cost"
+						readonly
+						value="0 kWh"
+					/>
+					<button id="exit-button" type="submit">SAYONARA!</button>
+				</form>
+			</div>
+			<div class="window" id="exit-window">
+				<h1>THANK YOU FOR USING MY APP!</h1>
+			</div>
 		</div>
 	</body>
 </html>
