@@ -6,16 +6,26 @@
 //* VIEW *
 
 // -- DOM ELEMENTS --
+
+// Windows
+const inputWindow = document.getElementById("input-window");
+const loadingWindow = document.getElementById("loading-window");
+const outputWindow = document.getElementById("output-window");
+const exitWindow = document.getElementById("exit-window");
+
+// Form Elements
 const inputForm = document.getElementById("input-form");
 const meterNo = document.getElementById("meter-no");
 const prevReading = document.getElementById("prev-reading");
 const currReading = document.getElementById("curr-reading");
 const costPerUnit = document.getElementById("unit-cost");
 
+const outputForm = document.getElementById("output-form");
 const consumption = document.getElementById("consumption");
 const monthlyCost = document.getElementById("monthly-cost");
 
 const calculateButton = document.getElementById("calculate-button");
+
 
 //* CONTROLLER *
 
@@ -28,8 +38,15 @@ window.onload = function () {
 	// bind output calculation to input's submit button
 	inputForm.addEventListener("submit", calculate);
 
+	// bind exit button to exit window
+	outputForm.addEventListener("submit", gotoExitWindow);
+
 	// If inputs are available, load them and calculate output
-	if (loadInputs()) calculate();
+	// if (loadInputs()) calculate();
+	loadInputs();
+
+	// Show the input window by default
+	setWindowActive(inputWindow);
 };
 
 // -- FUNCTIONS --
@@ -52,7 +69,7 @@ const validateReading = () => {
 
 // input submit button calculates consumption and monthly cost
 // also saves inputs to storage
-const calculate = () => {
+const calculate = async () => {
 	if (!validateReading()) return;
 
 	// calculate output values
@@ -65,14 +82,21 @@ const calculate = () => {
 
 	// peso is always 2 decimal places
 	monthlyCostVal =
-		"₱" +
-		monthlyCostVal.toFixed(2).toLocaleString("en", { useGrouping: true });
+		"₱" + monthlyCostVal.toFixed(2).toLocaleString("en", { useGrouping: true });
 
 	consumption.value = consumptionVal;
 	monthlyCost.value = monthlyCostVal;
 
 	// save inputs to storage
 	saveInputs();
+
+	// show loading window
+	await setWindowActive(loadingWindow);
+
+	// set a three second timer before showing the output window
+	setTimeout(() => {
+		setWindowActive(outputWindow);
+	}, 3000);
 };
 
 // saves input in storage
@@ -102,3 +126,17 @@ const loadInputs = () => {
 
 	return false;
 };
+
+// Sets all windows but the active one to hidden
+const setWindowActive = (window) => {
+	inputWindow.hidden = true;
+	loadingWindow.hidden = true;
+	outputWindow.hidden = true;
+	exitWindow.hidden = true;
+
+	window.hidden = false;
+};
+
+const gotoExitWindow = () => {
+	setWindowActive(exitWindow);
+};	

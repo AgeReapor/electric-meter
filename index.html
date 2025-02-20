@@ -8,7 +8,7 @@
 		<script src="script.js" defer></script>
 	</head>
 	<body>
-		<div id="input-window">
+		<div class="window" id="input-window">
 			<!-- Form element without the default redirect at submit	``` -->
 			<form id="input-form" onsubmit="event.preventDefault()">
 				<!-- Meter ID with alphanumeric format ABCD1234 -->
@@ -68,8 +68,10 @@
 				<button id="calculate-button" type="submit">Calculate!</button>
 			</form>
 		</div>
-		<div class="loading-window" hidden></div>
-		<div class="output-window" hidden>
+		<div class="window" id="loading-window" hidden>
+			<h1>CALCULATING...</h1>
+		</div>
+		<div class="window" id="output-window" hidden>
 			<form id="output-form" onsubmit="event.preventDefault()">
 				<label for="consumption"> Monthly Consumption </label>
 				<input
@@ -87,10 +89,11 @@
 					readonly
 					value="0 kWh"
 				/>
-
-				<button type="submit">SAYONARA!</button>
+				<button id="exit-button" type="submit">SAYONARA!</button>
 			</form>
 		</div>
-		<div class="exit-window" hidden></div>
+		<div class="window" id="exit-window" hidden>
+			<h1>THANK YOU FOR USING MY APP!</h1>
+		</div>
 	</body>
 </html>
