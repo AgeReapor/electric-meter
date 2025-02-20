@@ -1,5 +1,5 @@
 // TODO: BY THE POWER OF CSS
-// TODO: summary receipt (?) maybe copy from unc portal
+// TODO: summary receipt (?) maybe copy format from unc portal
 // TODO: Add Peso sign in front of unit cost via ::after
 // TODO: Theme saved in storage
 
