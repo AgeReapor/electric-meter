@@ -32,6 +32,11 @@
 	padding: 0;
 }
 
+h1 {
+	margin: 0;
+	padding: 0;
+}
+
 /* Element styles */
 form {
 	position: relative;
@@ -131,12 +136,6 @@ input[type="number"] {
 	transition: width 0.3s ease-in-out;
 }
 
-.label-input-pair{
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-}
-
 @media (max-width: 768px) {
 	.window {
 		flex-direction: column;
@@ -154,11 +153,26 @@ input[type="number"] {
 }
 
 /* Specific Styles */
-#input-window {
-}
 
 #input-window .left {
 	width: 645px;
+	margin-left: 86px;
+	margin-top: 248px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 54px;
+}
+
+#input-window {
+	.gif-container {
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+
+		z-index: 20;
+	}
 }
 
 #input-window .right {

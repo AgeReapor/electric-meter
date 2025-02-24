@@ -1,3 +1,5 @@
+import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
 // TODO: BY THE POWER OF CSS
 // TODO: summary receipt (?) maybe copy format from unc portal
 // TODO: Add Peso sign in front of unit cost via ::after
@@ -26,6 +28,11 @@ const monthlyCost = document.getElementById("monthly-cost");
 
 const calculateButton = document.getElementById("calculate-button");
 
+// GIF CONTAINERS
+const gifInput = document.querySelector("#input-window .gif-container");
+const gifLoading = document.querySelector("#loading-window .gif-container");
+const gifOutput = document.querySelector("#output-window .gif-container");
+const gifExit = document.querySelector("#exit-window .gif-container");
 
 //* CONTROLLER *
 
@@ -46,6 +53,13 @@ window.onload = function () {
 
 	// Show the input window by default
 	setWindowActive(inputWindow);
+
+	// load lottie animations
+
+	lottieLoad(
+		gifInput,
+		"https://lottie.host/68678d9c-76e5-4c33-80f4-17b64fe84341/yTFddtNHOu.lottie"
+	);
 };
 
 // -- FUNCTIONS --
@@ -81,7 +95,8 @@ const calculate = async () => {
 
 	// peso is always 2 decimal places
 	monthlyCostVal =
-		"₱" + monthlyCostVal.toFixed(2).toLocaleString("en", { useGrouping: true });
+		"₱" +
+		monthlyCostVal.toFixed(2).toLocaleString("en", { useGrouping: true });
 
 	consumption.value = consumptionVal;
 	monthlyCost.value = monthlyCostVal;
@@ -138,14 +153,14 @@ const setWindowActive = (window) => {
 
 const gotoExitWindow = () => {
 	setWindowActive(exitWindow);
-};	
+};
 // adds hidden class to passed element
 const setHidden = (element) => {
 	// only add hidden class if not already hidden
 	if (!element.classList.contains("hidden")) {
 		element.classList.add("hidden");
 	}
-}
+};
 
 // removes hidden class from passed element
 const removeHidden = (element) => {
@@ -153,4 +168,4 @@ const removeHidden = (element) => {
 	if (element.classList.contains("hidden")) {
 		element.classList.remove("hidden");
 	}
-}
+};

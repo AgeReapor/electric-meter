@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Electric Consumption Calculator</title>
 		<link rel="stylesheet" href="styles.css" />
-		<script src="script.js" defer></script>
+		<script src="script.js" type="module" defer></script>
 	</head>
 	<body>
 		<div class="container">
@@ -13,16 +13,29 @@
 				<div class="left">
 					<h1>LOREM IPSUM DOLOR</h1>
 					<p>
-						Nisl nisi scelerisque eu ultrices vitae auctor. Augue eget arcu
-						dictum varius duis at consectetur.
+						Nisl nisi scelerisque eu ultrices vitae auctor. Augue
+						eget arcu dictum varius duis at consectetur.
 					</p>
+					<div class="gif-container">
+						<script
+							src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+							type="module"
+						></script>
+						<dotlottie-player
+							src="https://lottie.host/68678d9c-76e5-4c33-80f4-17b64fe84341/yTFddtNHOu.lottie"
+							background="transparent"
+							speed="1"
+							loop
+							autoplay
+						></dotlottie-player>
+					</div>
 				</div>
 
 				<div class="right">
 					<!-- Form element without the default redirect at submit -->
 					<form id="input-form" onsubmit="event.preventDefault()">
 						<!-- Meter ID with alphanumeric format ABCD1234 -->
-						<div class="label-input-pair">
+						<div>
 							<label for="meter-no">Meter Number</label>
 							<input
 								type="text"
@@ -35,7 +48,7 @@
 								required
 							/>
 						</div>
-						<div class="label-input-pair">
+						<div>
 							<label for="prev-reading">Previous Reading</label>
 							<input
 								type="number"
@@ -51,7 +64,7 @@
 								required
 							/>
 						</div>
-						<div class="label-input-pair">
+						<div>
 							<label for="curr-reading">Current Reading</label>
 							<input
 								type="number"
@@ -67,7 +80,7 @@
 								required
 							/>
 						</div>
-						<div class="label-input-pair">
+						<div>
 							<label for="unit-cost">Cost</label>
 							<input
 								type="number"
@@ -80,36 +93,86 @@
 							/>
 						</div>
 
-						<button id="calculate-button" type="submit">Calculate!</button>
+						<button id="calculate-button" type="submit">
+							Calculate!
+						</button>
 					</form>
 				</div>
 			</div>
 			<div class="window" id="loading-window">
 				<h1>CALCULATING...</h1>
+				<div class="gif-container">
+					<script
+						src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+						type="module"
+					></script>
+					<dotlottie-player
+						src="https://lottie.host/f823ee6f-2098-4531-b034-e0649c9367e5/vnCrS5NZ3P.lottie"
+						background="transparent"
+						speed="1"
+						style="width: 300px; height: 300px"
+						loop
+						autoplay
+					></dotlottie-player>
+				</div>
 			</div>
 			<div class="window" id="output-window">
-				<form id="output-form" onsubmit="event.preventDefault()">
-					<label for="consumption"> Monthly Consumption </label>
-					<input
-						type="text"
-						name="consumption"
-						id="consumption"
-						readonly
-						value="0"
-					/>
-					<label for="monthly-cost"> Monthly Cost </label>
-					<input
-						type="text"
-						name="monthly-cost"
-						id="monthly-cost"
-						readonly
-						value="0 kWh"
-					/>
-					<button id="exit-button" type="submit">SAYONARA!</button>
-				</form>
+				<div class="left">
+					<div class="gif-container">
+						<script
+							src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+							type="module"
+						></script>
+						<dotlottie-player
+							src="https://lottie.host/0c1e6110-46cd-4bba-90e3-1952d1e3b556/jf8SfJttiY.lottie"
+							background="transparent"
+							speed="1"
+							style="width: 300px; height: 300px"
+							loop
+							autoplay
+						></dotlottie-player>
+					</div>
+				</div>
+				<div class="right">
+					<form id="output-form" onsubmit="event.preventDefault()">
+						<label for="consumption"> Monthly Consumption </label>
+						<input
+							type="text"
+							name="consumption"
+							id="consumption"
+							readonly
+							value="0"
+						/>
+						<label for="monthly-cost"> Monthly Cost </label>
+						<input
+							type="text"
+							name="monthly-cost"
+							id="monthly-cost"
+							readonly
+							value="0 kWh"
+						/>
+						<button id="exit-button" type="submit">
+							SAYONARA!
+						</button>
+					</form>
+				</div>
 			</div>
 			<div class="window" id="exit-window">
 				<h1>THANK YOU FOR USING MY APP!</h1>
+				<div class="gif-container">
+					<script
+						src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+						type="module"
+					></script>
+					<dotlottie-player
+						src="https://lottie.host/4a6f3f49-46f0-407d-b5e2-673013f61818/NuYF8K9rnY.lottie"
+						background="transparent"
+						speed="1"
+						style="width: 300px; height: 300px"
+						loop
+						autoplay
+					></dotlottie-player>
+				</div>
 			</div>
 		</div>
 	</body>
