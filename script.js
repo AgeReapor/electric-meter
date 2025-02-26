@@ -1,8 +1,6 @@
 import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
 
 // TODO: BY THE POWER OF CSS
-// TODO: summary receipt (?) maybe copy format from unc portal
-// TODO: Add Peso sign in front of unit cost via ::after
 // TODO: Theme saved in storage
 
 //* VIEW *
@@ -28,11 +26,8 @@ const monthlyCost = document.getElementById("monthly-cost");
 
 const calculateButton = document.getElementById("calculate-button");
 
-// GIF CONTAINERS
-const gifInput = document.querySelector("#input-window .gif-container");
-const gifLoading = document.querySelector("#loading-window .gif-container");
-const gifOutput = document.querySelector("#output-window .gif-container");
-const gifExit = document.querySelector("#exit-window .gif-container");
+// Theme
+const themeToggle = document.getElementById("theme-toggle");
 
 //* CONTROLLER *
 
@@ -51,15 +46,15 @@ window.onload = function () {
 	// If inputs are available, load them
 	loadInputs();
 
+	// Load theme
+	loadTheme();
+
+	// bind theme button events
+	themeToggle.addEventListener("click", toggleThemeHandler);
+
 	// Show the input window by default
 	setWindowActive(inputWindow);
-
-	// load lottie animations
-
-	lottieLoad(
-		gifInput,
-		"https://lottie.host/68678d9c-76e5-4c33-80f4-17b64fe84341/yTFddtNHOu.lottie"
-	);
+	// setWindowActive(exitWindow);
 };
 
 // -- FUNCTIONS --
@@ -113,6 +108,10 @@ const calculate = async () => {
 	}, 3000);
 };
 
+const getTheme = () => {
+	return document.body.classList.contains("dark") ? "dark" : "light";
+};
+
 // saves input in storage
 const saveInputs = () => {
 	const inputs = {
@@ -137,8 +136,23 @@ const loadInputs = () => {
 
 		return true;
 	}
-
 	return false;
+};
+
+const saveTheme = () => {
+	localStorage.setItem(storageKey + "_theme", getTheme());
+};
+
+const loadTheme = () => {
+	var theme = localStorage.getItem(storageKey + "_theme");
+	if (!theme) {
+		theme = "light";
+		return;
+	}
+
+	if (theme === "dark") {
+		document.body.classList.add("dark");
+	}
 };
 
 // Sets all windows but the active one to hidden
@@ -154,9 +168,10 @@ const setWindowActive = (window) => {
 const gotoExitWindow = () => {
 	setWindowActive(exitWindow);
 };
+
 // adds hidden class to passed element
 const setHidden = (element) => {
-	// only add hidden class if not already hidden
+	// only add class if not already added
 	if (!element.classList.contains("hidden")) {
 		element.classList.add("hidden");
 	}
@@ -164,8 +179,13 @@ const setHidden = (element) => {
 
 // removes hidden class from passed element
 const removeHidden = (element) => {
-	// only remove hidden class if already hidden
+	// only remove class if already added
 	if (element.classList.contains("hidden")) {
 		element.classList.remove("hidden");
 	}
+};
+
+const toggleThemeHandler = () => {
+	document.body.classList.toggle("dark");
+	saveTheme();
 };
