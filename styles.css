@@ -10,6 +10,7 @@
 	--horizontal-line: hsla(0, 0%, 85%, 0.08);
 	--border: hsla(0, 1%, 51%, 1);
 	--light-transparent: hsla(227, 74%, 93%, 1);
+	--input-background: white;
 	--dark-overlay: hsla(0, 0%, 0%, 0.5);
 	--button-shadow: hsla(0, 0%, 0%, 0.25);
 
@@ -33,7 +34,8 @@
 	--dark-overlay: hsla(0, 0%, 0%, 0.5);
 	--button-shadow: hsla(0, 0%, 0%, 0.25);
 
-	--input-text: #838181;
+	--input-text: hsla(11, 68%, 62%, 1);
+	--input-background: hsla(215, 55%, 35%, 0.5);
 
 	--primary: hsla(11, 68%, 62%, 1);
 	--gradient: linear-gradient(
@@ -110,6 +112,7 @@ input {
 	line-height: 24.2px;
 
 	color: var(--input-text);
+	background-color: var(--input-background);
 
 	padding: 18px 25px;
 
@@ -143,7 +146,7 @@ button {
 
 hr {
 	border: var(--horizontal-line) 1px solid;
-	width: 100%;
+	width: 120%;
 }
 
 /* remove spinners to inputs */
@@ -267,10 +270,21 @@ input[type="number"] {
 	.gif-container {
 		width: 100%;
 		height: 100%;
+		margin-top: -164px;
 
 		position: absolute;
+		margin-right: -96px;
 	}
 }
+@media screen and (max-width: 800px) {
+	#input-window .gif-container {
+		width: 400px;
+		margin-top: -200px;
+		margin-bottom: -96px;
+		position: relative;
+	}
+}
+
 #input-window h1 {
 	text-shadow: none;
 }
@@ -289,7 +303,7 @@ input[type="number"] {
 	width: 500px;
 	height: 500px;
 	bottom: -65px;
-	left: 198px;
+	right: 64px;
 }
 
 #input-form {
@@ -359,7 +373,7 @@ input[type="number"] {
 	height: min-content;
 }
 
-#loading-window .gif-container * {
+#loading-window .gif-container {
 	width: 500px;
 	height: 500px;
 }
@@ -398,9 +412,35 @@ input[type="number"] {
 	align-items: center;
 
 	padding: 64px;
-	height: min-content;
+	height: 100vh;
+
+	display: flex;
+
+	overflow: unset;
+}
+#output-window .gif-container {
+	width: unset;
+	height: unset;
+	position: relative;
 }
 
+@media screen and (max-width: 800px) {
+	#output-window {
+		width: 100vw;
+		height: unset;
+	}
+	#output-window .left,
+	#output-window .right {
+		width: 100vw;
+		height: unset;
+	}
+
+	#output-window .gif-container {
+		width: unset;
+		height: unset;
+		position: relative;
+	}
+}
 #output-form p {
 	font-family: var(--ff-inter);
 	color: var(--white);
@@ -454,12 +494,6 @@ input[type="number"] {
 	margin-bottom: 64px;
 }
 
-@media screen and (max-width: 800px) {
-	#output-window .right {
-		width: 100%;
-	}
-}
-
 #dark-overlay:not(:has(~ #exit-window.hidden)) .right {
 	--skew: 20deg;
 	--right: 200px;
@@ -498,6 +532,10 @@ input[type="number"] {
 	#exit-window .right {
 		width: 100%;
 		height: unset;
+	}
+
+	#exit-window h1 {
+		padding-bottom: 64px;
 	}
 }
 
