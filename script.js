@@ -54,7 +54,7 @@ window.onload = function () {
 
 	// Show the input window by default
 	setWindowActive(inputWindow);
-	// setWindowActive(exitWindow);
+	// setWindowActive(loadingWindow);
 };
 
 // -- FUNCTIONS --

@@ -4,7 +4,7 @@
 :root {
 	/* Style Variables */
 
-	--primary: hsla(11, 68%, 62%, 1);
+	--primary: #e0745c;
 	--dark: hsla(227, 27%, 15%, 1);
 	--white: hsla(0, 0%, 100%, 1);
 	--horizontal-line: hsla(0, 0%, 85%, 0.08);
@@ -35,8 +35,12 @@
 
 	--input-text: #838181;
 
-	--primary: #17b794;
-	--gradient: linear-gradient(130.41deg, #01005e 14.55%, #22267b 79.57%);
+	--primary: hsla(11, 68%, 62%, 1);
+	--gradient: linear-gradient(
+		130.41deg,
+		#111111 14.55%,
+		rgb(3, 5, 46) 79.57%
+	);
 	--dark-overlay: hsla(0, 0%, 100%, 0.05);
 	--horizontal-line: hsla(215, 55%, 35%, 0.5);
 	--border: #28518a;
@@ -179,10 +183,21 @@ input[type="number"] {
 
 	flex: 1 1 auto;
 	position: relative;
+	overflow: hidden;
 }
 
 .container label {
 	color: var(--white);
+}
+
+.gif-container {
+	position: relative;
+	z-index: 0;
+}
+
+*:has(~ .gif-container) {
+	z-index: 1;
+	backdrop-filter: blur(12px);
 }
 
 @media (max-width: 800px) {
@@ -192,11 +207,12 @@ input[type="number"] {
 	}
 	.window {
 		flex-direction: column;
+		height: max-content;
 	}
 
 	.left,
 	.right {
-		height: min-content;
+		height: max-content !important;
 		width: 100vw;
 	}
 
@@ -230,7 +246,7 @@ input[type="number"] {
 	background-color: var(--dark-overlay);
 	transform: skewX(var(--skew)) translateX(var(--right));
 
-	transition: transform 0.5s ease-in-out;
+	transition: transform 0.5s ease-in-out, width 0.5s ease-in-out;
 }
 
 #input-window .left,
@@ -324,17 +340,23 @@ input[type="number"] {
 
 #loading-window .left,
 #loading-window .right {
+	flex: unset;
 	width: 100vw;
-	flex: 0;
+	height: max-content;
 
 	display: flex;
 	justify-content: center;
+	align-items: center;
+}
+
+#loading-window .left {
+	height: 96px;
+	margin-bottom: 41px;
 }
 
 #loading-window h1 {
 	font-size: 96px;
 	height: min-content;
-	padding-bottom: 41px;
 }
 
 #loading-window .gif-container * {
@@ -372,11 +394,11 @@ input[type="number"] {
 #output-window .left,
 #output-window .right {
 	width: 48vw;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	padding: 64px;
+	height: min-content;
 }
 
 #output-form p {
@@ -453,7 +475,6 @@ input[type="number"] {
 
 #exit-window .left,
 #exit-window .right {
-	flex: 0;
 	width: 48vw;
 	display: flex;
 	justify-content: center;
@@ -470,11 +491,13 @@ input[type="number"] {
 	}
 
 	#exit-window .left {
-		padding-bottom: 25px;
+		padding-bottom: 0px;
+		width: 100%;
+		height: unset;
 	}
 	#exit-window .right {
 		width: 100%;
-		height: 100vh;
+		height: unset;
 	}
 }
 
